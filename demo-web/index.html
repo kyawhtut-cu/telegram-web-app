@@ -341,13 +341,13 @@
 						"Changes that you made may not be saved", 
 						[
 							{
-								type: 'cancel'
-							},
-							{
 								id: 'close_anyway', 
 								type: 'destructive', 
 								text: 'Close anyway'
 							},
+							{
+								type: 'cancel'
+							}
 						], 
 						function(button_id) {
 							if (button_id === "close_anyway") App.close()
