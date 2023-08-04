@@ -104,53 +104,14 @@
 
 			const AnimationPage = $.AnimationPage(`#divAnimation`)
 
-			const ItemPage = $.ItemPage(`#divItemList`)
-			const CartPage = $.CartPage(`#divCart`)
-
-			Home.init(ItemPage)
-			Home.registerPage(CartPage)
-			Home.setAnimationPage(AnimationPage)
+			Home.networkResult({status: "success", data: []})
 
 			App.init()
 
-			ItemPage.fetch((result) => {
-				Home.networkResult(result)
-			})
-
 			App.MainButton.onClick(function() {
-				if (Home.getCurrentPage() === ItemPage) {
-					Home.openPage(CartPage)
-				} else {
-					App.showPopup(
-						"Online Shop | Dev",
-						"Changes that you made may not be saved",
-						[
-							{
-								id: 'close_anyway', 
-								type: 'destructive', 
-								text: 'Close anyway'
-							},
-							{
-								type: 'cancel'
-							}
-						], 
-						function(button_id) {
-							if (button_id === "close_anyway") App.close()
-						}
-					)
-				}
 			})
 
 			App.BackButton.onClick(function() {
-				if (Home.canGoback()) {
-					Home.goBack()
-				}
-
-				if (Home.canGoback() || ItemPage.isHasSelectedItem()) {
-					App.enableClosingConfirmation()
-				} else {
-					App.disableClosingConfirmation()
-				}
 			})
 
 		})
