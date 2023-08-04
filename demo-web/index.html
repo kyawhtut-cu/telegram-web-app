@@ -12,6 +12,7 @@
 	<title></title>
 
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.js"></script>
 
 	<script>
 		function setThemeClass() {
@@ -25,21 +26,20 @@
 
 	<style type="text/css">
 
-		.food-container {
+		.product-container {
 			width: 100%;
 			display: inline-block;
 			position: relative;
 		}
 
-		.food-container img {
+		.product-container img {
 			width: 74px;
 		}
 
-		.food-container span {
+		.product-container span {
 			width: 24px;
 			height: 24px;
 			display: flex;
-			font-size: 14px;
 			align-items: center;
 			justify-content: center;
 			border-radius: 100px;
@@ -50,21 +50,28 @@
 			right: 0;
 		}
 
-		.food-name {
+		.product-name {
 			color: black;
 			font-size: 14px;
 			font-weight: 600;
-			margin: 2rem 0 0.5rem 0;
+			margin-bottom: 0;
 		}
 
-		.add {
+		.product-price {
+			color: black;
+			font-size: 14px;
+			font-weight: 600;
+			margin: 0 0 0.5rem 0;
+		}
+
+		.product-add {
 			font-weight: 600;
 			font-size: 18px;
 			color: white;
 			min-width: 74px;
 		}
 
-		.add-action {
+		.product-add-action {
 			width: 37px;
 			color: white;
 			font-weight: 700;
@@ -75,270 +82,50 @@
 </head>
 <body>
 
-	<div class="container text-center">
-		<div id="divItemList">
-			<div class="row">
-				<div class="col-4 mt-3 text-center">
-					<div class="food-container">
-						<img src="Burger_148.png">
-						<span style="display: none;" id="spanBurger">5</span>
-					</div>
-					<p class="food-name mt-2">Burger . $4.99</p>
-					<button type="button" class="btn btn-warning btn-sm add" id="btnBurger">Add</button>
-					<div id="divBurger" style="display: none;">
-						<button type="button" class="btn btn-danger btn-sm add-action" id="btnRemoveBurger">-</button>
-						<button type="button" class="btn btn-warning btn-sm add-action" id="btnAddBurger">+</button>
-					</div>
-				</div>
-				<div class="col-4 text-center mt-3 text-center">
-					<div class="food-container">
-						<img src="Fries_148.png">
-						<span style="display: none;" id="spanFries">5</span>
-					</div>
-					<p class="food-name mt-2">Fries . $1.49</p>
-					<button type="button" class="btn btn-warning btn-sm add" id="btnFries">Add</button>
-					<div id="divFries" style="display: none;">
-						<button type="button" class="btn btn-danger btn-sm add-action" id="btnRemoveFries">-</button>
-						<button type="button" class="btn btn-warning btn-sm add-action" id="btnAddFries">+</button>
-					</div>
-				</div>
-				<div class="col-4 text-center mt-3 text-center">
-					<div class="food-container">
-						<img src="Hotdog_148.png">
-						<span style="display: none;" id="spanHotdog">5</span>
-					</div>
-					<p class="food-name mt-2">Hotdog . $3.49</p>
-					<button type="button" class="btn btn-warning btn-sm add" id="btnHotdog">Add</button>
-					<div id="divHotdog" style="display: none;">
-						<button type="button" class="btn btn-danger btn-sm add-action" id="btnRemoveHotdog">-</button>
-						<button type="button" class="btn btn-warning btn-sm add-action" id="btnAddHotdog">+</button>
-					</div>
-				</div>
-				<div class="col-4 text-center mt-3 text-center">
-					<div class="food-container">
-						<img src="Tako_148.png">
-						<span style="display: none;" id="spanTaco">5</span>
-					</div>
-					<p class="food-name mt-2">Taco . $3.99</p>
-					<button type="button" class="btn btn-warning btn-sm add" id="btnTaco">Add</button>
-					<div id="divTaco" style="display: none;">
-						<button type="button" class="btn btn-danger btn-sm add-action" id="btnRemoveTaco">-</button>
-						<button type="button" class="btn btn-warning btn-sm add-action" id="btnAddTaco">+</button>
-					</div>
-				</div>
-				<div class="col-4 text-center mt-3 text-center">
-					<div class="food-container">
-						<img src="Pizza_148.png">
-						<span style="display: none;" id="spanPizza">5</span>
-					</div>
-					<p class="food-name mt-2">Pizza . 7.99</p>
-					<button type="button" class="btn btn-warning btn-sm add" id="btnPizza">Add</button>
-					<div id="divPizza" style="display: none;">
-						<button type="button" class="btn btn-danger btn-sm add-action" id="btnRemovePizza">-</button>
-						<button type="button" class="btn btn-warning btn-sm add-action" id="btnAddPizza">+</button>
-					</div>
-				</div>
-				<div class="col-4 text-center mt-3 text-center">
-					<div class="food-container">
-						<img src="Donut_148.png">
-						<span style="display: none;" id="spanDonut">5</span>
-					</div>
-					<p class="food-name mt-2">Donut . $1.49</p>
-					<button type="button" class="btn btn-warning btn-sm add" id="btnDonut">Add</button>
-					<div id="divDonut" style="display: none;">
-						<button type="button" class="btn btn-danger btn-sm add-action" id="btnRemoveDonut">-</button>
-						<button type="button" class="btn btn-warning btn-sm add-action" id="btnAddDonut">+</button>
-					</div>
-				</div>
-				<div class="col-4 text-center mt-3 text-center">
-					<div class="food-container">
-						<img src="Popcorn_148.png">
-						<span style="display: none;" id="spanPopcorn">5</span>
-					</div>
-					<p class="food-name mt-2">Popcorn . $1.99</p>
-					<button type="button" class="btn btn-warning btn-sm add" id="btnPopcorn">Add</button>
-					<div id="divPopcorn" style="display: none;">
-						<button type="button" class="btn btn-danger btn-sm add-action" id="btnRemovePopcorn">-</button>
-						<button type="button" class="btn btn-warning btn-sm add-action" id="btnAddPopcorn">+</button>
-					</div>
-				</div>
-				<div class="col-4 text-center mt-3 text-center">
-					<div class="food-container">
-						<img src="Coke_148.png">
-						<span style="display: none;" id="spanCoke">5</span>
-					</div>
-					<p class="food-name mt-2">Coke . $1.49</p>
-					<button type="button" class="btn btn-warning btn-sm add" id="btnCoke">Add</button>
-					<div id="divCoke" style="display: none;">
-						<button type="button" class="btn btn-danger btn-sm add-action" id="btnRemoveCoke">-</button>
-						<button type="button" class="btn btn-warning btn-sm add-action" id="btnAddCoke">+</button>
-					</div>
-				</div>
-				<div class="col-4 text-center mt-3 text-center">
-					<div class="food-container">
-						<img src="Cake_148.png">
-						<span style="display: none;" id="spanCake">5</span>
-					</div>
-					<p class="food-name mt-2">Cake . $10.99</p>
-					<button type="button" class="btn btn-warning btn-sm add" id="btnCake">Add</button>
-					<div id="divCake" style="display: none;">
-						<button type="button" class="btn btn-danger btn-sm add-action" id="btnRemoveCake">-</button>
-						<button type="button" class="btn btn-warning btn-sm add-action" id="btnAddCake">+</button>
-					</div>
-				</div>
-				<div class="col-4 text-center mt-3 text-center">
-					<div class="food-container">
-						<img src="Icecream_148.png">
-						<span style="display: none;" id="spanIcecream">5</span>
-					</div>
-					<p class="food-name mt-2">Icecream . $5.99</p>
-					<button type="button" class="btn btn-warning btn-sm add" id="btnIcecream">Add</button>
-					<div id="divIcecream" style="display: none;">
-						<button type="button" class="btn btn-danger btn-sm add-action" id="btnRemoveIcecream">-</button>
-						<button type="button" class="btn btn-warning btn-sm add-action" id="btnAddIcecream">+</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="divCart" style="display: none;">
-			<p class="pt-2">ဈေးဝယ်ခြင်း နေရာ အတွက် Develop လုပ်နေဆဲ ဖြစ်သည့်အတွက် ကြည့်ရှု၍ မရနိုင်သေးပါ။</p>
-		</div>
+	<div class="container">
+		<div id="divAnimation" class="h-100"></div>
+		<div id="divItemList" style="display: none;"></div>
+		<div id="divCart" style="display: none;"></div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="js/api.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/itemPage.js"></script>
+	<script src="js/home.js"></script>
+	<script src="js/animationPage.js"></script>
+	<script src="js/cartPage.js"></script>
+	<script src="js/utils.js"></script>
 
-	<script type="application/javascript">
+	<script type="text/javascript">
 
 		$(document).ready(function() {
 
-			let page = 0
+			const App = $.App()
+			const Home = $.Home()
 
-			const count = {
-				btnBurger: 0,
-				btnFries: 0,
-				btnHotdog: 0,
-				btnTaco: 0,
-				btnPizza: 0,
-				btnDonut: 0,
-				btnPopcorn: 0,
-				btnCoke: 0,
-				btnCake: 0,
-				btnIcecream: 0
-			}
+			const AnimationPage = $.AnimationPage(`#divAnimation`)
 
-			const App = {
-				BackButton: Telegram.WebApp.BackButton,
-				MainButton: Telegram.WebApp.MainButton,
+			const ItemPage = $.ItemPage(`#divItemList`)
+			const CartPage = $.CartPage(`#divCart`)
 
-				init() {
-					this.MainButton.hide()
-					this.BackButton.hide()
-				},
+			Home.init(ItemPage)
+			Home.registerPage(CartPage)
+			Home.setAnimationPage(AnimationPage)
 
-				enableClosingConfirmation() {
-					Telegram.WebApp.enableClosingConfirmation()
-				},
+			App.init()
 
-				disableClosingConfirmation() {
-					Telegram.WebApp.disableClosingConfirmation()
-				},
-
-				showMainButton() {
-					this.MainButton.show()
-				},
-
-				hideMainButton() {
-					this.MainButton.hide()
-				},
-
-				showBackButton() {
-					this.BackButton.show()
-				},
-
-				hideBackButton() {
-					this.BackButton.hide()
-				},
-
-				sendData(data) {
-					Telegram.WebApp.sendData(data)
-				},
-
-				expandApp() {
-					Telegram.WebApp.expand()
-				},
-
-				apiRequest(url, method, data, onCallback) {
-					fetch(
-						url,
-						{
-							method: method,
-							body: JSON.stringify(data),
-							headers: {
-								'Content-Type': 'application/json'
-							}
-						}
-					).then(function(response) {
-						return response.json();
-					}).then(function(result) {
-						onCallback && onCallback(result);
-					}).catch(function(error) {
-						onCallback && onCallback({error: 'Server error'});
-					})
-				},
-
-				showAlert(message) {
-					Telegram.WebApp.showAlert(message)
-				},
-
-				showConfirm(message, callback) {
-					Telegram.WebApp.showConfirm(message, function(button_id) {
-						callback(button_id)
-					})
-				},
-
-				showPopup(title, message, buttons, callback) {
-					// [
-					// 	{
-					// 		id: 'delete', 
-					// 		type: 'destructive', 
-					// 		text: 'Delete all'
-					// 	},
-					// 	{
-					// 		id: 'faq', 
-					// 		type: 'default', 
-					// 		text: 'Open FAQ'
-					// 	},
-					// 	{
-					// 		type: 'cancel'
-					// 	},
-					// ]
-					Telegram.WebApp.showPopup({
-						title: title,
-						message: message,
-						buttons: buttons
-					}, function(button_id) {
-						callback(button_id)
-						if (buttonId === 'delete') {
-						DemoApp.showAlert("'Delete all' selected");
-						} else if (buttonId === 'faq') {
-						Telegram.WebApp.openLink('https://telegram.org/faq');
-						}
-					})
-				},
-
-				close() {
-					Telegram.WebApp.close()
-				}
-			}
-
-			function addItem() {
-			}
+			ItemPage.fetch((result) => {
+				Home.networkResult(result)
+			})
 
 			App.MainButton.onClick(function() {
-				if (page == 1) {
+				if (Home.getCurrentPage() === ItemPage) {
+					Home.openPage(CartPage)
+				} else {
 					App.showPopup(
-						"Online Shop | Dev", 
-						"Changes that you made may not be saved", 
+						"Online Shop | Dev",
+						"Changes that you made may not be saved",
 						[
 							{
 								id: 'close_anyway', 
@@ -353,205 +140,19 @@
 							if (button_id === "close_anyway") App.close()
 						}
 					)
-					return
 				}
-				page = 1
-				App.enableClosingConfirmation()
-				App.showBackButton()
-				$("#divItemList").css("display", "none")
-				$("#divCart").css("display", "block")
-				App.MainButton.text = "ပိတ်ရန်"
 			})
 
 			App.BackButton.onClick(function() {
-				page = 0
-				App.disableClosingConfirmation()
-				App.hideBackButton()
-				$("#divItemList").css("display", "block")
-				$("#divCart").css("display", "none")
-				App.MainButton.text = "စျေးဝယ်ခြင်း ကြည့်ရန်"
-			})
-
-			App.init()
-
-			function processCart(id, div, span) {
-				let totalCount = 0
-				Object.keys(count).forEach(key => {
-					totalCount += count[key]
-				})
-
-				let visible = "block"
-				if (count[id] == 0) {
-					visible = "none"
+				if (Home.canGoback()) {
+					Home.goBack()
 				}
 
-				$(`#${span}`).text(count[id])
-				$(`#${span}`).css("display", visible)
-				$(`#${div}`).css("display", visible)
-
-				if (count[id] == 0) {
-					$(`#${id}`).css("display", "inline")
+				if (Home.canGoback()) {
+					App.enableClosingConfirmation()
 				} else {
-					$(`#${id}`).css("display", "none")
+					App.disableClosingConfirmation()
 				}
-
-				App.MainButton.text = "စျေးဝယ်ခြင်း ကြည့်ရန်"
-				if (totalCount > 0) App.showMainButton()
-				else App.hideMainButton()
-			}
-
-			$("#btnBurger").on("click", function() {
-				count.btnBurger += 1
-				processCart("btnBurger", "divBurger", "spanBurger")
-			})
-
-			$("#btnFries").on("click", function() {
-				count.btnFries += 1
-				processCart("btnFries", "divFries", "spanFries")
-			})
-
-			$("#btnHotdog").on("click", function() {
-				count.btnHotdog += 1
-				processCart("btnHotdog", "divHotdog", "spanHotdog")
-			})
-
-			$("#btnTaco").on("click", function() {
-				count.btnTaco += 1
-				processCart("btnTaco", "divTaco", "spanTaco")
-			})
-
-			$("#btnPizza").on("click", function() {
-				count.btnPizza += 1
-				processCart("btnPizza", "divPizza", "spanPizza")
-			})
-
-			$("#btnDonut").on("click", function() {
-				count.btnDonut += 1
-				processCart("btnDonut", "divDonut", "spanDonut")
-			})
-
-			$("#btnPopcorn").on("click", function() {
-				count.btnPopcorn += 1
-				processCart("btnPopcorn", "divPopcorn", "spanPopcorn")
-			})
-
-			$("#btnCoke").on("click", function() {
-				count.btnCoke += 1
-				processCart("btnCoke", "divCoke", "spanCoke")
-			})
-
-			$("#btnCake").on("click", function() {
-				count.btnCake += 1
-				processCart("btnCake", "divCake", "spanCake")
-			})
-
-			$("#btnIcecream").on("click", function() {
-				count.btnIcecream += 1
-				processCart("btnIcecream", "divIcecream", "spanIcecream")
-			})
-
-			// add action
-
-			$("#btnAddBurger").on("click", function() {
-				count.btnBurger += 1
-				processCart("btnBurger", "divBurger", "spanBurger")
-			})
-
-			$("#btnAddFries").on("click", function() {
-				count.btnFries += 1
-				processCart("btnFries", "divFries", "spanFries")
-			})
-
-			$("#btnAddHotdog").on("click", function() {
-				count.btnHotdog += 1
-				processCart("btnHotdog", "divHotdog", "spanHotdog")
-			})
-
-			$("#btnAddTaco").on("click", function() {
-				count.btnTaco += 1
-				processCart("btnTaco", "divTaco", "spanTaco")
-			})
-
-			$("#btnAddPizza").on("click", function() {
-				count.btnPizza += 1
-				processCart("btnPizza", "divPizza", "spanPizza")
-			})
-
-			$("#btnAddDonut").on("click", function() {
-				count.btnDonut += 1
-				processCart("btnDonut", "divDonut", "spanDonut")
-			})
-
-			$("#btnAddPopcorn").on("click", function() {
-				count.btnPopcorn += 1
-				processCart("btnPopcorn", "divPopcorn", "spanPopcorn")
-			})
-
-			$("#btnAddCoke").on("click", function() {
-				count.btnCoke += 1
-				processCart("btnCoke", "divCoke", "spanCoke")
-			})
-
-			$("#btnAddCake").on("click", function() {
-				count.btnCake += 1
-				processCart("btnCake", "divCake", "spanCake")
-			})
-
-			$("#btnAddIcecream").on("click", function() {
-				count.btnIcecream += 1
-				processCart("btnIcecream", "divIcecream", "spanIcecream")
-			})
-
-			// remove action
-
-			$("#btnRemoveBurger").on("click", function() {
-				count.btnBurger -= 1
-				processCart("btnBurger", "divBurger", "spanBurger")
-			})
-
-			$("#btnRemoveFries").on("click", function() {
-				count.btnFries -= 1
-				processCart("btnFries", "divFries", "spanFries")
-			})
-
-			$("#btnRemoveHotdog").on("click", function() {
-				count.btnHotdog -= 1
-				processCart("btnHotdog", "divHotdog", "spanHotdog")
-			})
-
-			$("#btnRemoveTaco").on("click", function() {
-				count.btnTaco -= 1
-				processCart("btnTaco", "divTaco", "spanTaco")
-			})
-
-			$("#btnRemovePizza").on("click", function() {
-				count.btnPizza -= 1
-				processCart("btnPizza", "divPizza", "spanPizza")
-			})
-
-			$("#btnRemoveDonut").on("click", function() {
-				count.btnDonut -= 1
-				processCart("btnDonut", "divDonut", "spanDonut")
-			})
-
-			$("#btnRemovePopcorn").on("click", function() {
-				count.btnPopcorn -= 1
-				processCart("btnPopcorn", "divPopcorn", "spanPopcorn")
-			})
-
-			$("#btnRemoveCoke").on("click", function() {
-				count.btnCoke -= 1
-				processCart("btnCoke", "divCoke", "spanCoke")
-			})
-
-			$("#btnRemoveCake").on("click", function() {
-				count.btnCake -= 1
-				processCart("btnCake", "divCake", "spanCake")
-			})
-
-			$("#btnRemoveIcecream").on("click", function() {
-				count.btnIcecream -= 1
-				processCart("btnIcecream", "divIcecream", "spanIcecream")
 			})
 
 		})
