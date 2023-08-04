@@ -131,6 +131,10 @@
 		page.empty()
 
 		return {
+			isHasSelectedItem() {
+				return getCartItemList().length > 0
+			},
+
 			getCartItemList() {
 				return itemList.filter(item => {
 					item.count != null && item.count > 0

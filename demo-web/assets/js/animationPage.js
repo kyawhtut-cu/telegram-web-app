@@ -35,15 +35,15 @@
 
 		return {
 
-			loading(path = "animation/loading.json") {
+			loading(path = "./assets/animation/loading.json") {
 				renderAnimation(path)
 			},
 
-			error(path = "animation/error.json") {
+			error(path = "./assets/animation/error.json") {
 				renderAnimation(path)
 			},
 
-			empty(path = "animation/empty_data.json") {
+			empty(path = "./assets/animation/empty_data.json") {
 				renderAnimation(path)
 			},
 
