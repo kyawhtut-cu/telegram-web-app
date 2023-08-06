@@ -53,7 +53,11 @@
 
 			hide() {
 				isShowing = false
-				animation.stop()
+
+				if (animation != null) {
+					animation.stop()
+				}
+
 				animation = null
 				page.empty()
 				page.hide()

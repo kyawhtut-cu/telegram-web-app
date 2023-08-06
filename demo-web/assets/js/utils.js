@@ -2,6 +2,12 @@
 
 	jQuery.Utils = function() {
 		return {
+			localStorage: localStorage,
+
+			logout() {
+				this.localStorage.clear()
+			},
+
 			getParameter(key) {
 				key = key.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]")
 				var regx = new RegExp("[\\?&]" + key + "=([^&#]*)")

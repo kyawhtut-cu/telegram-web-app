@@ -1,13 +1,12 @@
 (function (jQuery) {
 
 	const BASE_URL = `https://script.google.com/macros/s/AKfycbzid6fJqnEQnz5NxR-CL-r0E84AKfS280BeZuaYMha_1i9fC2COdZCvhYdh7N0G-9ahZg/exec`
+	let App = null
 
 	let page = null
 	let itemList = []
 
 	function calculateTotalCount() {
-		let App = $.App()
-
 		let totalCount = 0
 		itemList.forEach(item => {
 			let count = item.count
@@ -17,8 +16,13 @@
 		})
 
 		App.MainButton.text = "စျေးဝယ်ခြင်း ကြည့်ရန်"
-		if (totalCount > 0) App.showMainButton()
-		else App.hideMainButton()
+		if (totalCount > 0) {
+			App.showMainButton()
+			App.enableClosingConfirmation()
+		} else {
+			App.hideMainButton()
+			App.disableClosingConfirmation()
+		}
 	}
 
 	function addToCart(count, item_id) {
@@ -124,9 +128,11 @@
 		})
 
 		page.append(row)
+		page.show()
 	}
 
-	jQuery.ItemPage = function(div) {
+	jQuery.ItemPage = function(app, div) {
+		App = app
 		page = $(div)
 		page.empty()
 
@@ -142,7 +148,7 @@
 			},
 
 			show() {
-				$.App().MainButton.text = "စျေးဝယ်ခြင်း ကြည့်ရန်"
+				App.MainButton.text = `စျေးဝယ်ခြင်း ကြည့်ရန်`
 				page.show()
 			},
 
@@ -151,18 +157,21 @@
 			},
 
 			fetch(callback) {
-				let brand_id = $.Utils().getParameter("brand_id")
+				let brand_id = $.Utils().getParameter(`brand_id`)
 				let api = $.Api(BASE_URL)
-				api.get(
-					`?route=item_list_by_brand_id&brand_id=${brand_id}`,
-					function(response) {
+				api.sheet({
+					route: `item_list_by_brand_id`,
+					query: {
+						brand_id
+					},
+					callback: function(response) {
 						callback(response)
-						if (response.status === "success") {
+						if (response.status === `success`) {
 							if (response.data != null) itemList = response.data
 							renderPage()
 						}
 					}
-				)
+				})
 			}
 		}
 	}

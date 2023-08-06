@@ -2,13 +2,32 @@
 	"use strict";
 
 	jQuery.App = function() {
-		return {
+		let app = {
 			BackButton: Telegram.WebApp.BackButton,
 			MainButton: Telegram.WebApp.MainButton,
+			initDataUnsafe: Telegram.WebApp.initDataUnsafe || {},
+			id: null,
+			username: null,
+			displayname: null,
 
 			init() {
 				this.MainButton.hide()
 				this.BackButton.hide()
+
+				try {
+					this.id = this.initDataUnsafe.user.id || null
+					this.username = this.initDataUnsafe.user.username || null
+					this.displayname = this.initDataUnsafe.user.first_name || ``
+					let lastname = this.initDataUnsafe.user.last_name || ``
+					if (lastname != ``) {
+						this.displayname += ` ` + lastname
+					}
+				} catch (e) {
+					this.id = $.Utils().getParameter("id")
+					console.log(e)
+				}
+
+				return this
 			},
 
 			enableClosingConfirmation() {
@@ -43,14 +62,18 @@
 				Telegram.WebApp.expand()
 			},
 
-			showAlert(message) {
-				Telegram.WebApp.showAlert(message)
+			showAlert(message, callback) {
+				Telegram.WebApp.showAlert(message, callback)
 			},
 
 			showConfirm(message, callback) {
 				Telegram.WebApp.showConfirm(message, function(button_id) {
 					callback(button_id)
 				})
+			},
+
+			themeParams() {
+				return Telegram.WebApp.themeParams
 			},
 
 			showPopup(title, message, buttons, callback) {
@@ -87,5 +110,6 @@
 				Telegram.WebApp.close()
 			}
 		}
+		return app.init()
 	}
 }(jQuery))

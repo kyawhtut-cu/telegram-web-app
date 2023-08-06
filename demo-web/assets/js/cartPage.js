@@ -1,6 +1,9 @@
 (function(jQuery) {
 
-	jQuery.CartPage = function(div) {
+	let App = null
+
+	jQuery.CartPage = function(app, div) {
+		App = app
 		div = $(div)
 
 		return {

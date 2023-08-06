@@ -1,4 +1,6 @@
 (function (jQuery) {
+
+	let App = null
 	
 	let pages = []
 	let mainPage = null
@@ -24,7 +26,8 @@
 		if (currentPage != null) currentPage.show()
 	}
 
-	jQuery.Home = function() {
+	jQuery.Home = function(app) {
+		App = app
 		return {
 			init(page) {
 				mainPage = page
@@ -46,7 +49,7 @@
 			},
 
 			openPage(page) {
-				$.App().showBackButton()
+				App.showBackButton()
 				this.getCurrentPage().hide()
 
 				currentPage = page
@@ -66,6 +69,10 @@
 			networkResult(result) {
 				if (currentPage != null) currentPage.hide()
 
+				if (result.status_code === 401) {
+					$.Utils().logout()
+				}
+
 				if (result.status === `loading` && animationPage != null) {
 					animationPage.loading()
 				} else if (result.status === `error` && animationPage != null) {
@@ -73,7 +80,6 @@
 				} else if ((result.data == null || (result.data.constructor === Array && result.data.length == 0)) && animationPage != null) {
 					animationPage.empty()
 				} else {
-					if (currentPage != null) currentPage.show()
 					if (animationPage != null) animationPage.hide()
 				}
 			},
